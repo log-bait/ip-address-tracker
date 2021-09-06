@@ -1,0 +1,157 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;   
+}
+header{
+    color: white;
+    width: 100%;
+    height: 250px;
+    padding: 30px;
+    text-align: center;
+    background-image: url(/images/pattern-bg.png);
+    background-repeat: no-repeat;
+}
+.input-group{
+    width: 50%;
+    margin: auto;
+
+}
+input[type="text"]{
+    height: 45px;
+    width: 10%;
+    border-radius: 10px;
+    padding-left: 30px;
+    border-style: none;
+    outline: none;
+}
+input[type="submit"]{
+    background-color: black;
+    color: white;
+    height: 45px;
+    width: 40px;
+    border-radius: 10px;
+    outline: none;
+
+}
+section{
+    display: flex;
+    margin: auto;
+    width: 80%;
+    height: 150px;
+    position: relative;
+    background-color: white;
+    bottom: 70px;
+    border-radius: 20px;
+}
+section>div{
+    margin: auto;
+    text-align: left;
+    width: 20%;
+    height: 70%;
+    border-right: 1px solid rgb(192, 181, 181);
+}
+section>div:last-of-type{
+    border-right: none;
+}
+.ipa, .locate, .utc, .is{
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+.loader{
+    border: 3px solid  white;
+    border-top: 3px solid blue;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+    margin-right: 4px;
+}
+#loading{
+    margin:100px auto 0;
+    width: 10%;
+    display: flex;
+}
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+}
+.attribution a {
+     color: hsl(228, 45%, 44%); 
+}
+#map{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    top: -149px;
+z-index: -1;
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+    
+}
+@media screen and (max-width:1024px) {
+    section>div{
+        margin: auto;
+        text-align: left;
+        width:100%;
+        padding-left: 20px;
+        height: 70%;
+        border-right: 1px solid rgb(192, 181, 181);
+    }
+}
+@media screen and (max-width: 768px) {
+    header{
+        color: white;
+        width: 100%;
+        height: 250px;
+        padding: 30px;
+        text-align: center;
+        background-image: url(/images/pattern-bg.png);
+        background-repeat: no-repeat;
+    }
+    #map{
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        top: -310px;
+    z-index: -1;
+    }
+}
+@media screen and (max-width: 425px) {
+    section{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 80%;
+        height: 100%;
+        position: relative;
+        background-color: white;
+        bottom: 70px;
+        border-radius: 20px;
+        padding: 20px;
+    }
+    section>div{
+        margin: auto;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        border-right: none;
+    }
+    .ipa, .locate, .utc, .is{
+        margin-top: 10px;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+}
+@media screen and (max-width:375px) {
+    #map{
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        top: -375px;
+    z-index: -1;
+    }
+}
