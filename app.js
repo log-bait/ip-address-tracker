@@ -17,7 +17,7 @@ if(ip == ''){
     load.classList.add('d-none');
 }
 else{
-
+    error.classList.add('d-none')
          ipTracker(ip).then((res)=>{
             ipa.innerText = res.ip;
             country.innerText = res.location.country;
@@ -26,6 +26,7 @@ else{
             sec.classList.remove('d-none')
             viewMap(res.location.lat, res.location.lng);
         }).catch((err)=>{
+            error.classList.remove('d-none')
             error.innerText= `${err.message}`
             load.classList.add('d-none');
         })
