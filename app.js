@@ -1,6 +1,5 @@
 const apikey = "at_s2fvwibjxs1xaRXLAxIScXfe19dRd"
 const form = document.querySelector('form');
-const regx = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/g;
 const sec = document.querySelector('section');
 let ipa = document.querySelector('.ipa');
 let country = document.querySelector('.locate');
@@ -12,29 +11,24 @@ const load = document.querySelector('#loading');
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
         const ip = document.querySelector('input[type="text"]').value;
-        const result = regx.test(ip);
         load.classList.remove('d-none');
-if(result){
-    ipTracker(ip).then((res)=>{
-        viewMap(res.location.lat, res.location.lng);
-        ipa.innerText = res.ip;
-        country.innerText = res.location.country;
-        time.innerText = "UTC" + res.location.timezone;
-        isp.innerText = res.isp
-        error.classList.add('d-none')
-        load.classList.add('d-none');
-        sec.classList.remove('d-none')
-        console.log(res.location.lat, res.location.lng)
-    }).catch((err)=>{
-        error.classList.remove('d-none')
-        console.log(err)
-    })
-         error.classList.add('d-none')
+if(ip == ''){
+    error.classList.remove('d-none')
+    load.classList.add('d-none');
 }
 else{
-         error.classList.remove('d-none')
-         load.classList.add('d-none');
 
+         ipTracker(ip).then((res)=>{
+            ipa.innerText = res.ip;
+            country.innerText = res.location.country;
+            time.innerText = "UTC" + res.location.timezone;
+            isp.innerText = res.isp
+            sec.classList.remove('d-none')
+            viewMap(res.location.lat, res.location.lng);
+        }).catch((err)=>{
+            error.innerText= `${err.message}`
+            load.classList.add('d-none');
+        })
 }
 })
 
@@ -43,7 +37,9 @@ async function ipTracker(address){
 
         const response = await fetch(`https://geo.ipify.org/api/v1?apiKey=at_s2fvwibjxs1xaRXLAxIScXfe19dRd&ipAddress= ${ address }`);
         const data = await response.json();
-
+if(response.status !==200){
+    throw new Error("Enter valid IP address")
+}
         return data;
 }
 
